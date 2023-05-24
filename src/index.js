@@ -1,12 +1,14 @@
 import _ from 'lodash';
+  
+const TodoItemFactory = (title, desc, priority) => {
+  let complete = false;
+  const getTitle = () => {return title};
+  const getDesc = () => {return desc};
+  const getPriority = () => {return priority};
+  const getComplete = () => {return complete}
+  const setComplete = () => complete = true;
+  // const setPriority
+  return { getTitle, getDesc, getPriority, setComplete, getComplete };
+};
 
-function component() {
-    const element = document.createElement('div');
-  
-    // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+const meditate = TodoItemFactory('meditate', '15min Meditation today', '2');
