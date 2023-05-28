@@ -1,14 +1,14 @@
 import _ from 'lodash';
   
-const TodoItemFactory = (title, desc, priority) => {
-  let complete = false;
+const TodoItemFactory = (title, desc) => {
   const getTitle = () => {return title};
   const getDesc = () => {return desc};
-  const getPriority = () => {return priority};
-  const getComplete = () => {return complete}
-  const setComplete = () => complete = true;
-  // const setPriority
-  return { getTitle, getDesc, getPriority, setComplete, getComplete };
+  const getCompl= () => {return false};
+  return {getTitle, getDesc, getCompl};
 };
 
-const meditate = TodoItemFactory('meditate', '15min Meditation today', '2');
+const SetComplete = () => {
+  return true;
+} 
+
+const meditate = TodoItemFactory('meditate', '15 mins of silence', '3');
