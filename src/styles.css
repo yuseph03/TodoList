@@ -1,0 +1,82 @@
+:root {
+    --primary-font: 24px;
+    --secondary-font: 48px;
+    --primary-dark: #1F2937;
+    --secondary-dark: #444444;
+    --hover-dark: #c9c8c8;
+    --primary-light: #eee;
+    --secondary-light: #ddd;
+  }
+
+html {
+    /* footer support */
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    /* footer support */
+    margin-bottom: 48px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.head {
+    background-color: var(--primary-dark);
+    padding: 50px;
+}
+
+.main-logo {
+    color: var(--primary-light);
+    font-size: 68px;
+    font-weight: 800;
+}
+
+.taskBar {
+    flex: 1;
+    padding: 0.5em;
+    background-color: var(--secondary-light);
+    font-size: var(--secondary-font);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.taskBar button {
+    border: 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: var(--primary-font);
+    background-color: var(--secondary-light);
+}
+
+.taskBar button:hover {
+    background-color: var(--hover-dark);
+    cursor: pointer;
+}
+
+
+.projects {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.main {
+    flex: 3;
+    background-color: var(--primary-light);
+    padding: 100px;
+}

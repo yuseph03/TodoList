@@ -1,5 +1,6 @@
 import _ from 'lodash';
-  
+import './styles.css';
+
 const TodoItem = (title, desc) => {
   const getTitle = () => {return title};
   const getDesc = () => {return desc};
@@ -14,6 +15,7 @@ const SetCompl = () => {
 // BASIC LAYOUT
 
 const container = document.createElement('div');
+container.setAttribute('class', 'container');
 
 const head = document.createElement('div');
 head.setAttribute('class','head');
@@ -34,6 +36,7 @@ week.setAttribute('class', 'week');
 week.textContent = 'This week';
 
 const projects = document.createElement('div');
+projects.setAttribute('class', 'projects')
 projects.textContent = 'Projects'
 
 const addProject = document.createElement('button');
@@ -46,5 +49,5 @@ main.setAttribute('class', 'main');
 head.append(mainLogo);
 projects.append(addProject);
 taskBar.append(inbox, week, projects);
-container.append(head, taskBar, main);
-document.body.append(container);
+container.append(taskBar, main);
+document.body.append(head, container);
