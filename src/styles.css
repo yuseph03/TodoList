@@ -6,9 +6,10 @@
     --hover-dark: #c9c8c8;
     --primary-light: #eee;
     --secondary-light: #ddd;
-  }
+}
 
 html {
+    margin: 0;
     /* footer support */
     position: relative;
     min-height: 100%;
@@ -23,9 +24,15 @@ body {
     margin-bottom: 48px;
 }
 
+body button:hover {
+    background-color: var(--hover-dark);
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-direction: row;
+    min-height: calc(100vh - 104px - 48px);
 }
 
 .head {
@@ -61,12 +68,6 @@ body {
     background-color: var(--secondary-light);
 }
 
-.taskBar button:hover {
-    background-color: var(--hover-dark);
-    cursor: pointer;
-}
-
-
 .projects {
     width: 100%;
     display: flex;
@@ -75,8 +76,24 @@ body {
     align-items: flex-start;
 }
 
-.main {
+#main {
     flex: 3;
     background-color: var(--primary-light);
-    padding: 100px;
+    padding: 30px;
+}
+
+/* INBOX STYLING */
+
+.inboxTitle {
+    font-size: var(--secondary-font);
+}
+
+.inboxButton {
+    border: 0;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: var(--primary-font);
 }
