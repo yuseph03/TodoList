@@ -11,7 +11,10 @@ const TodoItem = (desc) => {
   return {getDesc, getCompl, SetCompl};
 };
 
-document.querySelector('.inbox').addEventListener('click', inbox)
+document.querySelector('.inbox').addEventListener('click', inbox);
+document.querySelector('.inboxButton').addEventListener('click', function() {formPopup('.inboxButton', 'red')});
+document.querySelector('.addProject').addEventListener('click', function() {formPopup('.addProject', 'blue')});
+
 
 function home() {
   const container = document.createElement('div');
@@ -41,7 +44,7 @@ function home() {
 
   const addProject = document.createElement('button');
   addProject.setAttribute('class', 'addProject');
-  addProject.textContent = 'Add Project';
+  addProject.textContent = '+ Add Project';
 
   const main = document.createElement('div');
   main.setAttribute('id', 'main');
@@ -65,6 +68,41 @@ function inbox() {
   const inboxButton = document.createElement('button');
   inboxButton.setAttribute('class', 'inboxButton');
   inboxButton.textContent = '+ Add Task';
-
+  
   main.append(inboxTitle, inboxButton);
 }
+
+function formPopup(positionEl, styleEl) {
+  const position = document.querySelector(`${positionEl}`);
+
+  const form = document.createElement('form');
+  form.setAttribute('class', `${styleEl}`);
+
+  const formInput = document.createElement('input');
+  formInput.setAttribute('class', 'formInput');
+  formInput.setAttribute('type', 'text');
+
+  const formSubmit = document.createElement('input');
+  formSubmit.setAttribute('class', 'formSubmit');
+  formSubmit.setAttribute('type', 'submit');
+  formSubmit.setAttribute('value', 'Add');
+
+  const formCancel = document.createElement('button');
+  formCancel.setAttribute('class', 'formCancel');
+  formCancel.textContent = 'Cancel';
+
+  form.append(formInput, formSubmit, formCancel);
+  position.insertAdjacentElement('beforebegin', form);
+}
+
+// function addProject() {
+//   const addProject = document.getElementsByClassName('addProject');
+//   addProject.innerHTML = '';
+
+//   const form = document.createElement('form');
+//   const input = document.createElement('input');
+//   input.setAttribute('type', 'text');
+//   input.setAttribute('id', 'projName');
+
+//   addProject.append(projectForm);
+// }
