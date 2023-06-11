@@ -97,3 +97,38 @@ body button:hover {
     border-radius: 8px;
     font-size: var(--primary-font);
 }
+
+.projPopup .formCancel, .taskPopup .formCancel {
+    border-color: 1px solid #eeadad;
+    background-color: #ffbebe;
+}
+
+.projPopup .formSubmit, .taskPopup .formSubmit {
+    border-color: 1px solid #99dd99;
+    background-color: #aaffaa;
+}
+
+/* Footer */
+
+.footer {
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+  gap: 10px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.fa-github {
+  width: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}

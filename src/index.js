@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import './styles.css';
+import gitPic from './images/github-mark.svg'
 
 home();
 inbox();
+footer();
 
 const TodoItem = (desc) => {
   const getDesc = () => {return desc};
@@ -12,8 +14,8 @@ const TodoItem = (desc) => {
 };
 
 document.querySelector('.inbox').addEventListener('click', inbox);
-document.querySelector('.inboxButton').addEventListener('click', function() {formPopup('.inboxButton', 'red')});
-document.querySelector('.addProject').addEventListener('click', function() {formPopup('.addProject', 'blue')});
+document.querySelector('.inboxButton').addEventListener('click', function() {formPopup('.inboxButton', 'projPopup')});
+document.querySelector('.addProject').addEventListener('click', function() {formPopup('.addProject', 'taskPopup')});
 
 
 function home() {
@@ -72,37 +74,44 @@ function inbox() {
   main.append(inboxTitle, inboxButton);
 }
 
-function formPopup(positionEl, styleEl) {
-  const position = document.querySelector(`${positionEl}`);
+function formPopup(positionEl, className) {
+    const position = document.querySelector(`${positionEl}`);
 
-  const form = document.createElement('form');
-  form.setAttribute('class', `${styleEl}`);
+    const form = document.createElement('form');
+    form.setAttribute('class', `${className}`);
 
-  const formInput = document.createElement('input');
-  formInput.setAttribute('class', 'formInput');
-  formInput.setAttribute('type', 'text');
+    const formInput = document.createElement('input');
+    formInput.setAttribute('class', 'formInput');
+    formInput.setAttribute('type', 'text');
 
-  const formSubmit = document.createElement('input');
-  formSubmit.setAttribute('class', 'formSubmit');
-  formSubmit.setAttribute('type', 'submit');
-  formSubmit.setAttribute('value', 'Add');
+    const formSubmit = document.createElement('button');
+    formSubmit.setAttribute('class', 'formSubmit');
+    formSubmit.textContent = 'Add';
 
-  const formCancel = document.createElement('button');
-  formCancel.setAttribute('class', 'formCancel');
-  formCancel.textContent = 'Cancel';
+    const formCancel = document.createElement('button');
+    formCancel.setAttribute('class', 'formCancel');
+    formCancel.textContent = 'Cancel';
 
-  form.append(formInput, formSubmit, formCancel);
-  position.insertAdjacentElement('beforebegin', form);
+    form.append(formInput, formSubmit, formCancel);
+    position.insertAdjacentElement('beforebegin', form);
 }
 
-// function addProject() {
-//   const addProject = document.getElementsByClassName('addProject');
-//   addProject.innerHTML = '';
+function footer() {
+  const foot = document.createElement('footer')
+  foot.setAttribute('class', 'footer')
 
-//   const form = document.createElement('form');
-//   const input = document.createElement('input');
-//   input.setAttribute('type', 'text');
-//   input.setAttribute('id', 'projName');
+  const footP = document.createElement('p')
+  footP.textContent = 'Copyright '+new Date().getFullYear()+' © Yuseph03'
 
-//   addProject.append(projectForm);
-// }
+  const gitLink = document.createElement('a')
+  gitLink.href = "https://github.com/Yuseph03"
+  const gitLogo = document.createElement('i')
+  const img = new Image();
+  img.src = gitPic;
+  img.setAttribute('class', 'fa-github');
+
+  gitLogo.append(img)
+  gitLink.append(gitLogo);
+  foot.append(footP, gitLink);
+  document.body.append(foot);
+}
