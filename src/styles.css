@@ -38,11 +38,12 @@ body button:hover {
 .head {
     background-color: var(--primary-dark);
     padding: 50px;
+    width: 100%;
 }
 
 .main-logo {
     color: var(--primary-light);
-    font-size: 68px;
+    font-size: calc(100vw - 96vw);
     font-weight: 800;
 }
 
@@ -58,7 +59,7 @@ body button:hover {
     align-items: flex-start;
 }
 
-.taskBar button {
+.inbox, .week, .addProject {
     border: 0;
     width: 100%;
     text-align: left;
@@ -69,7 +70,7 @@ body button:hover {
 }
 
 .projects {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -90,7 +91,6 @@ body button:hover {
 
 .inboxButton {
     border: 0;
-    border: 0;
     width: 100%;
     text-align: left;
     padding: 10px 20px;
@@ -98,14 +98,43 @@ body button:hover {
     font-size: var(--primary-font);
 }
 
-.projPopup .formCancel, .taskPopup .formCancel {
-    border-color: 1px solid #eeadad;
-    background-color: #ffbebe;
+.formInput {
+    border: 0;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: var(--primary-font);
 }
 
-.projPopup .formSubmit, .taskPopup .formSubmit {
+.projPopup .formInput {
+    margin-top: 1em;
+    font-size: 19px;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.formCancel {
+    width: 45%;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    border-color: 1px solid #eeadad;
+    background-color: #ffbebe;
+    font-size: 18px;
+}
+
+.formSubmit {
+    width: 45%;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
     border-color: 1px solid #99dd99;
     background-color: #aaffaa;
+    font-size: 18px;
 }
 
 /* Footer */
@@ -118,7 +147,6 @@ body button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1em;
   gap: 10px;
   width: 100%;
   font-size: 18px;

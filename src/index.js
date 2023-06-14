@@ -14,9 +14,8 @@ const TodoItem = (desc) => {
 };
 
 document.querySelector('.inbox').addEventListener('click', inbox);
-document.querySelector('.inboxButton').addEventListener('click', function() {formPopup('.inboxButton', 'projPopup')});
-document.querySelector('.addProject').addEventListener('click', function() {formPopup('.addProject', 'taskPopup')});
-
+document.querySelector('.inboxButton').addEventListener('click', function() {formPopup('.inboxButton', 'taskPopup')});
+document.querySelector('.addProject').addEventListener('click', function() {formPopup('.addProject', 'projPopup')});
 
 function home() {
   const container = document.createElement('div');
@@ -34,10 +33,12 @@ function home() {
 
   const inbox = document.createElement('button');
   inbox.setAttribute('class', 'inbox');
+  inbox.setAttribute('type', 'button');
   inbox.textContent = 'Inbox';
 
   const week = document.createElement('button');
   week.setAttribute('class', 'week');
+  week.setAttribute('type', 'button');
   week.textContent = 'This week';
 
   const projects = document.createElement('div');
@@ -46,6 +47,7 @@ function home() {
 
   const addProject = document.createElement('button');
   addProject.setAttribute('class', 'addProject');
+  addProject.setAttribute('type', 'button');
   addProject.textContent = '+ Add Project';
 
   const main = document.createElement('div');
@@ -69,6 +71,7 @@ function inbox() {
 
   const inboxButton = document.createElement('button');
   inboxButton.setAttribute('class', 'inboxButton');
+  inboxButton.setAttribute('type', 'button');
   inboxButton.textContent = '+ Add Task';
   
   main.append(inboxTitle, inboxButton);
@@ -84,16 +87,30 @@ function formPopup(positionEl, className) {
     formInput.setAttribute('class', 'formInput');
     formInput.setAttribute('type', 'text');
 
+    const formContainer = document.createElement('div');
+    formContainer.setAttribute('class', 'formContainer');
+
     const formSubmit = document.createElement('button');
     formSubmit.setAttribute('class', 'formSubmit');
+    formSubmit.setAttribute('type', 'button');
     formSubmit.textContent = 'Add';
 
     const formCancel = document.createElement('button');
     formCancel.setAttribute('class', 'formCancel');
+    formCancel.setAttribute('type', 'button');
     formCancel.textContent = 'Cancel';
+    formCancel.addEventListener('click', function() {remove(`${className}`)});
 
-    form.append(formInput, formSubmit, formCancel);
+
+    formContainer.append(formSubmit, formCancel);
+    form.append(formInput, formContainer);
     position.insertAdjacentElement('beforebegin', form);
+
+    if(className == 'taskPopup') {
+      document.querySelector('.inboxButton').style.display = 'none';
+    } else {
+      document.querySelector('.addProject').style.display = 'none';
+    }
 }
 
 function footer() {
@@ -114,4 +131,10 @@ function footer() {
   gitLink.append(gitLogo);
   foot.append(footP, gitLink);
   document.body.append(foot);
+}
+
+function remove(element) {
+  console.log('kaar kard');
+  const popup = document.querySelector(`.${element}`);
+  popup.style.display = 'none';
 }
