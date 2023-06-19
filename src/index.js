@@ -1,10 +1,18 @@
 import _ from 'lodash';
 import './styles.css';
-import {home, inbox, footer} from './layout.js';
+import gitPic from './images/github-mark.svg'
+import {inbox, formPopup, activateBtn} from './popup.js';
 
 home();
 inbox();
 footer();
+
+document.querySelector('.inbox').addEventListener('click', inbox);
+document.querySelector('.inbox').addEventListener('click', function() {activateBtn('inbox')});
+document.querySelector('.week').addEventListener('click', function() {activateBtn('week')});
+
+const inboxButton = document.querySelector('.inboxButton');
+const addProject = document.querySelector('.addProject');
 
 const TodoItem = (desc) => {
   const getDesc = () => {return desc};
@@ -13,60 +21,67 @@ const TodoItem = (desc) => {
   return {getDesc, getCompl, SetCompl};
 };
 
-const inboxButton = document.querySelector('.inboxButton');
-const addProject = document.querySelector('.addProject');
+function home() {
+  const container = document.createElement('div');
+  container.setAttribute('class', 'container');
 
-document.querySelector('.inbox').addEventListener('click', inbox);
-document.querySelector('.inboxButton').addEventListener('click', function() {formPopup('.inboxButton', 'taskPopup')});
-document.querySelector('.addProject').addEventListener('click', function() {formPopup('.addProject', 'projPopup')});
+  const head = document.createElement('div');
+  head.setAttribute('class','head');
+
+  const mainLogo = document.createElement('div');
+  mainLogo.setAttribute('class', 'main-logo')
+  mainLogo.textContent = 'TodoList';
+
+  const taskBar = document.createElement('div');
+  taskBar.setAttribute('class', 'taskBar');
+
+  const inbox = document.createElement('button');
+  inbox.setAttribute('class', 'inbox btnActive');
+  inbox.setAttribute('type', 'button');
+  inbox.textContent = 'Inbox';
+
+  const week = document.createElement('button');
+  week.setAttribute('class', 'week');
+  week.setAttribute('type', 'button');
+  week.textContent = 'This week';
+
+  const projects = document.createElement('div');
+  projects.setAttribute('class', 'projects')
+  projects.textContent = 'Projects'
+
+  const addProject = document.createElement('button');
+  addProject.setAttribute('class', 'addProject');
+  addProject.setAttribute('type', 'button');
+  addProject.textContent = '+ Add Project';
+  addProject.addEventListener('click', function() {formPopup('.addProject', 'projPopup')});
+
+  const main = document.createElement('div');
+  main.setAttribute('id', 'main');
 
 
-function formPopup(positionEl, className) {
-    const position = document.querySelector(`${positionEl}`);
-
-    const form = document.createElement('form');
-    form.setAttribute('class', `${className}`);
-
-    const formInput = document.createElement('input');
-    formInput.setAttribute('class', 'formInput');
-    formInput.setAttribute('type', 'text');
-
-    const formContainer = document.createElement('div');
-    formContainer.setAttribute('class', 'formContainer');
-
-    const formSubmit = document.createElement('button');
-    formSubmit.setAttribute('class', 'formSubmit');
-    formSubmit.setAttribute('type', 'button');
-    formSubmit.textContent = 'Add';
-
-    const formCancel = document.createElement('button');
-    formCancel.setAttribute('class', 'formCancel');
-    formCancel.setAttribute('type', 'button');
-    formCancel.textContent = 'Cancel';
-    formCancel.addEventListener('click', function() {remove(`${className}`)});
-
-
-    formContainer.append(formSubmit, formCancel);
-    form.append(formInput, formContainer);
-    position.insertAdjacentElement('beforebegin', form);
-
-    if(className == 'taskPopup') {
-      inboxButton.style.display = 'none';
-    } else {
-      addProject.style.display = 'none';
-    }
+  head.append(mainLogo);
+  projects.append(addProject);
+  taskBar.append(inbox, week, projects);
+  container.append(taskBar, main);
+  document.body.append(head, container);
 }
 
-function remove(element) {
-  console.log('kaar kard');
-  const main = document.getElementById('main');
-  const projPopup = document.querySelector('.projects');
-  const popup = document.querySelector(`.${element}`);
-  if(popup.parentNode == main){
-    main.removeChild(popup);
-    inboxButton.style.display = 'block';
-  } else {
-    projPopup.removeChild(popup);
-    addProject.style.display = 'block';
-  }
+function footer() {
+  const foot = document.createElement('footer')
+  foot.setAttribute('class', 'footer')
+
+  const footP = document.createElement('p')
+  footP.textContent = 'Copyright '+new Date().getFullYear()+' © Yuseph03'
+
+  const gitLink = document.createElement('a')
+  gitLink.href = "https://github.com/Yuseph03"
+  const gitLogo = document.createElement('i')
+  const img = new Image();
+  img.src = gitPic;
+  img.setAttribute('class', 'fa-github');
+
+  gitLogo.append(img)
+  gitLink.append(gitLogo);
+  foot.append(footP, gitLink);
+  document.body.append(foot);
 }
