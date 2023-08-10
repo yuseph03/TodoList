@@ -1,2 +1,2 @@
-# TodoList
-A to-do list with local storage (API)
+# todoList
+A todo-list made with HTML, CSS and Javascript
