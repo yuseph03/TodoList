@@ -42,11 +42,17 @@ export default class Storage {
     const input = document.getElementById('input-add-project-popup').value;
     const projPopup = document.getElementById('add-project-popup');
     const todolist = Storage.getTodolist();
-
     todolist.setProject(input);
     Storage.setTodolist(todolist);
     UI.loadProject(input);
+    UI.loadProjectBtn(input)
     UI.deactivatePopup(projPopup);
-    UI.initBtns();
+  }
+
+  static openProject(proj) {
+    const todolist = Storage.getTodolist();
+    UI.loadProject(proj);
+    // todolist.getProject(proj)
+    // .getTasks.forEach((task) => UI.loadTask(task.name, task.date));
   }
 }

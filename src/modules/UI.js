@@ -1,4 +1,6 @@
+import Project from "./Project";
 import Storage from "./Storage";
+import Todolist from "./Todolist";
 
 export default class UI {
   static loadHomePage() {
@@ -34,6 +36,23 @@ export default class UI {
             </button>
           </div>
         </div>`;
+  }
+  
+  static loadProjectBtn(projectName) {
+    const projList = document.getElementById('projects-list')
+
+    projList.innerHTML += `
+    <button class="button-project" data-project-button>
+        <div class="left-project-panel">
+          <i class="fas fa-tasks"></i>
+          <span>${projectName}</span>
+        </div>
+        <div class="right-project-panel">
+          <i class="fas fa-times"></i>
+        </div>
+      </button>`;
+
+      UI.initProjectBtns()
   }
 
   static loadTask(task, date) {
@@ -73,6 +92,12 @@ export default class UI {
     addProjBtn.addEventListener('click', () => UI.activatePopup(projPopup));
     projCancel.addEventListener('click', () => UI.deactivatePopup(projPopup));
     projConfirm.addEventListener('click', () => Storage.addProject());
+  }
+
+  static initProjectBtns() {
+    const projBtnArray = Array.from(document.querySelectorAll('.left-project-panel'));
+    projBtnArray.forEach((element) => element.addEventListener('click', 
+    () => Storage.openProject(element.querySelector('span').textContent)));
   }
 
   static activatePopup(popup) {

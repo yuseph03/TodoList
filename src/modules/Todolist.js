@@ -17,10 +17,14 @@ export default class Todolist {
   }
 
   getProject(proj) {
-    return this.projects.find((project) => project.name === proj);
+    return this.projects.find((project) => project.name === `${proj}`);
   }
 
   setProject(proj) {
-    return this.projects.push(proj);
+    return this.projects.push(new Project(`${proj}`));
+  }
+
+  clear() {
+    this.projects = [];
   }
 }
