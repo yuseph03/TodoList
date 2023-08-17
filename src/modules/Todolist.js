@@ -23,8 +23,4 @@ export default class Todolist {
   setProject(proj) {
     return this.projects.push(new Project(`${proj}`));
   }
-
-  clear() {
-    this.projects = [];
-  }
 }

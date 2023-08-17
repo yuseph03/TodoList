@@ -5,7 +5,16 @@ import Todolist from "./Todolist";
 export default class UI {
   static loadHomePage() {
     UI.loadProject('Inbox');
+    UI.loadProjects();
     UI.initBtns();
+    Storage.clear();
+  }
+  
+  static loadProjects() {
+    const projects = Storage.getTodolist().getProjects()
+    if(projects.length > 3){
+      Object.values(projects).forEach((val) => UI.loadProjectBtn(val.name))
+    }
   }
 
   static loadProject(projectName) {
@@ -52,7 +61,8 @@ export default class UI {
         </div>
       </button>`;
 
-      UI.initProjectBtns()
+      UI.initBtns()
+      // UI.initProjectBtns()
   }
 
   static loadTask(task, date) {
@@ -94,11 +104,11 @@ export default class UI {
     projConfirm.addEventListener('click', () => Storage.addProject());
   }
 
-  static initProjectBtns() {
-    const projBtnArray = Array.from(document.querySelectorAll('.left-project-panel'));
-    projBtnArray.forEach((element) => element.addEventListener('click', 
-    () => Storage.openProject(element.querySelector('span').textContent)));
-  }
+  // static initProjectBtns() {
+  //   const projBtnArray = Array.from(document.querySelectorAll('.left-project-panel'));
+  //   projBtnArray.forEach((element) => element.addEventListener('click', 
+  //   () => Storage.openProject(element.querySelector('span').textContent)));
+  // }
 
   static activatePopup(popup) {
     popup.classList.add('active');

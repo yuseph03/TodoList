@@ -34,6 +34,7 @@ export default class Storage {
 
     todolist.getProject(project).setTask(new Task(input, 'No Date'));
     Storage.setTodolist(todolist);
+    console.log(Storage.getTodolist())
     UI.loadTask(input, 'No Date');
     UI.deactivatePopup(taskPopup);
   }
@@ -49,10 +50,13 @@ export default class Storage {
     UI.deactivatePopup(projPopup);
   }
 
-  static openProject(proj) {
-    const todolist = Storage.getTodolist();
-    UI.loadProject(proj);
-    // todolist.getProject(proj)
-    // .getTasks.forEach((task) => UI.loadTask(task.name, task.date));
+  // static openProject(proj) {
+  //   const todolist = Storage.getTodolist();
+  //   UI.loadProject(proj);
+  //   todolist.getProject(proj).getTasks().forEach((task) => UI.loadTask(task.name, task.date));
+  // }
+
+  static clear() {
+    localStorage.clear();
   }
 }
