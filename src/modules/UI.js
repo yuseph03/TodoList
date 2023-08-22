@@ -1,19 +1,21 @@
-import Project from "./Project";
-import Storage from "./Storage";
-import Todolist from "./Todolist";
+import Project from './Project';
+import Storage from './Storage';
+import Todolist from './Todolist';
 
 export default class UI {
   static loadHomePage() {
     UI.loadProject('Inbox');
     UI.loadProjects();
     UI.initBtns();
-    Storage.clear();
   }
-  
+
   static loadProjects() {
-    const projects = Storage.getTodolist().getProjects()
-    if(projects.length > 3){
-      Object.values(projects).forEach((val) => UI.loadProjectBtn(val.name))
+    const projects = Storage.getTodolist().getProjects();
+    if (projects.length > 3) {
+      Object.values(projects).forEach((val) => {
+        if (val.name != 'Inbox' && val.name !== 'Week' && val.name !== 'Today')
+          {UI.loadProjectBtn(val.name);}
+      });
     }
   }
 
@@ -46,9 +48,9 @@ export default class UI {
           </div>
         </div>`;
   }
-  
+
   static loadProjectBtn(projectName) {
-    const projList = document.getElementById('projects-list')
+    const projList = document.getElementById('projects-list');
 
     projList.innerHTML += `
     <button class="button-project" data-project-button>
@@ -60,13 +62,10 @@ export default class UI {
           <i class="fas fa-times"></i>
         </div>
       </button>`;
-
-      UI.initBtns()
-      // UI.initProjectBtns()
   }
 
   static loadTask(task, date) {
-    const tasksList = document.getElementById('tasks-list')
+    const tasksList = document.getElementById('tasks-list');
     tasksList.innerHTML += `
         <button class="button-task" data-task-button>
           <div class="left-task-panel">
@@ -95,6 +94,8 @@ export default class UI {
     const projPopup = document.getElementById('add-project-popup');
     const projConfirm = document.getElementById('button-add-project-popup');
 
+    const projDeleteBtns = Array.from(document.querySelectorAll('.right-project-panel'));
+
     addTaskBtn.addEventListener('click', () => UI.activatePopup(taskPopup));
     taskCancel.addEventListener('click', () => UI.deactivatePopup(taskPopup));
     taskConfirm.addEventListener('click', () => Storage.addTask());
@@ -102,11 +103,15 @@ export default class UI {
     addProjBtn.addEventListener('click', () => UI.activatePopup(projPopup));
     projCancel.addEventListener('click', () => UI.deactivatePopup(projPopup));
     projConfirm.addEventListener('click', () => Storage.addProject());
+
+    projDeleteBtns.forEach((element) => element.addEventListener('click', 
+      () => Storage.removeProject(element))
+    );
   }
 
   // static initProjectBtns() {
   //   const projBtnArray = Array.from(document.querySelectorAll('.left-project-panel'));
-  //   projBtnArray.forEach((element) => element.addEventListener('click', 
+  //   projBtnArray.forEach((element) => element.addEventListener('click',
   //   () => Storage.openProject(element.querySelector('span').textContent)));
   // }
 
