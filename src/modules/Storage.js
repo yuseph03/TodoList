@@ -34,35 +34,47 @@ export default class Storage {
 
     todolist.getProject(project).setTask(new Task(input, 'No Date'));
     Storage.setTodolist(todolist);
-    console.log(Storage.getTodolist());
     UI.loadTask(input, 'No Date');
+    document.getElementById('input-add-task-popup').value = '';
     UI.deactivatePopup(taskPopup);
+    UI.initProjectBtns();
   }
 
   static addProject() {
     const input = document.getElementById('input-add-project-popup').value;
     const projPopup = document.getElementById('add-project-popup');
     const todolist = Storage.getTodolist();
+
     todolist.setProject(input);
     Storage.setTodolist(todolist);
     UI.loadProject(input);
     UI.loadProjectBtn(input);
+    document.getElementById('input-add-project-popup').value = '';
     UI.deactivatePopup(projPopup);
+    UI.initProjectBtns();
   }
 
   static removeProject(project) {
-    let storage = Storage.getTodolist().getProjects();
-    storage = storage.filter(proj => proj == project)
-    Storage.setTodolist(storage);
-    project.parentElement.remove();
+    const todolist = Storage.getTodolist();
+    const projName = project.parentNode.querySelector('span').textContent;
+    const projList = todolist.getProjects().filter(proj => proj.name !== `${projName}`);
+    
+    todolist.setProjects(projList);
+    Storage.setTodolist(todolist);
+    project.parentNode.remove();
     console.log(Storage.getTodolist())
   }
 
-  // static openProject(proj) {
-  //   const todolist = Storage.getTodolist();
-  //   UI.loadProject(proj);
-  //   todolist.getProject(proj).getTasks().forEach((task) => UI.loadTask(task.name, task.date));
-  // }
+  static openProject(proj) {
+    const todolist = Storage.getTodolist();
+    UI.loadProject(proj);
+    if(todolist.getProject(proj).getTasks()){
+      todolist.getProject(proj)
+      .getTasks()
+      .forEach((task) => UI.loadTask(task.name, task.date));
+    }
+    UI.initAddTaskBtn();
+  }
 
   static clear() {
     localStorage.clear();
