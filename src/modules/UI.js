@@ -5,7 +5,6 @@ export default class UI {
     UI.loadProject('Inbox');
     UI.loadProjects();
     UI.initBtns();
-    UI.initProjectBtns();
     console.log(Storage.getTodolist())
   }
 
@@ -44,6 +43,13 @@ export default class UI {
 
     projBtnArray.forEach((element) => element.addEventListener('click',
       () => Storage.openProject(element.querySelector('span').textContent)));
+  }
+
+  static initTaskBtns() {
+    const taskBtns = Array.from(document.querySelectorAll('i.fa-circle'));
+
+    taskBtns.forEach((element) => element.addEventListener('click',
+      () => Storage.removeTask(element)));
   }
 
   static loadProjects() {
@@ -132,6 +138,8 @@ export default class UI {
   static initBtns() {
     UI.initAddTaskBtn();
     UI.initAddProjectBtn();
+    UI.initProjectBtns();
+    UI.initTaskBtns();
   }
 
   static activatePopup(popup) {
