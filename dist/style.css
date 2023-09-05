@@ -111,11 +111,19 @@
     display: block;
   }
   
+  .default-projects-list {
+    display: flex;
+    justify-content: center;
+  }
+
   .button-default-project {
     background-color: var(--secondary-light);
-    text-align: left;
+    width: 50%;
+    padding: 30px 20px;
+    font-size: 24px;
+    text-align: center;
   }
-  
+
   .fa-inbox {
     margin-right: 6px;
   }

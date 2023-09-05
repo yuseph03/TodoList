@@ -38,6 +38,7 @@ export default class Storage {
     document.getElementById('input-add-task-popup').value = '';
     UI.deactivatePopup(taskPopup);
     UI.initProjectBtns();
+    UI.initTaskBtns();
   }
 
   static removeTask(task) {
