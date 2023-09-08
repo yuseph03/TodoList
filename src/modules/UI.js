@@ -5,7 +5,6 @@ export default class UI {
     UI.loadProject('Inbox');
     UI.loadProjects();
     UI.initBtns();
-    console.log(Storage.getTodolist())
   }
 
   static initAddTaskBtn() {
@@ -31,25 +30,33 @@ export default class UI {
   }
 
   static initProjectBtns() {
-    const projDefaultBtns = Array.from(document.querySelectorAll('.button-default-project'))
+    const projDefaultBtns = Array.from(document.querySelectorAll('.button-default-project'));
     const projDeleteBtns = Array.from(document.querySelectorAll('.right-project-panel'));
     const projBtnArray = Array.from(document.querySelectorAll('.left-project-panel'));
 
-    projDefaultBtns.forEach((element) => element.addEventListener('click', 
-      () => Storage.openProject(element.querySelector('span').textContent)));
+    projDefaultBtns.forEach((element) => element.addEventListener(
+      'click',
+      () => Storage.openProject(element.querySelector('span').textContent),
+    ));
 
-    projDeleteBtns.forEach((element) => element.addEventListener('click', 
-      () => Storage.removeProject(element)));
+    projDeleteBtns.forEach((element) => element.addEventListener(
+      'click',
+      () => Storage.removeProject(element),
+    ));
 
-    projBtnArray.forEach((element) => element.addEventListener('click',
-      () => Storage.openProject(element.querySelector('span').textContent)));
+    projBtnArray.forEach((element) => element.addEventListener(
+      'click',
+      () => Storage.openProject(element.querySelector('span').textContent),
+    ));
   }
 
   static initTaskBtns() {
     const taskBtns = Array.from(document.querySelectorAll('i.fa-circle'));
 
-    taskBtns.forEach((element) => element.addEventListener('click',
-      () => Storage.removeTask(element)));
+    taskBtns.forEach((element) => element.addEventListener(
+      'click',
+      () => Storage.removeTask(element),
+    ));
   }
 
   static loadProjects() {
@@ -60,14 +67,15 @@ export default class UI {
     if (projects.length > 3) {
       Object.values(projects).forEach((val) => {
         if (val.name != 'Inbox' && val.name !== 'Week' && val.name !== 'Today') {
-            UI.loadProjectBtn(val.name);
-        }});
-      }
+          UI.loadProjectBtn(val.name);
+        }
+      });
+    }
 
     if (inbox.getTasks()) {
       inbox.getTasks().forEach((task) => {
         UI.loadTask(task.name, task.date);
-      })
+      });
     }
   }
 
@@ -128,7 +136,6 @@ export default class UI {
           <div class="right-task-panel">
             <p class="due-date" id="due-date">${date}</p>
             <input type="date" class="input-due-date" data-input-due-date>
-            <i class="fas fa-times"></i>
           </div>
         </button>`;
   }

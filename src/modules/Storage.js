@@ -43,16 +43,16 @@ export default class Storage {
 
   static removeTask(task) {
     const todolist = Storage.getTodolist();
-    const taskName = task.parentNode.querySelector('.task-content').textContent; 
+    const taskName = task.parentNode.querySelector('.task-content').textContent;
     const projName = document.getElementById('project-name').textContent;
 
     const taskList = todolist.getProject(projName)
       .getTasks()
-      .filter(task => task.name !== `${taskName}`);
+      .filter((task) => task.name !== `${taskName}`);
     todolist.getProject(projName).setTasks(taskList);
     Storage.setTodolist(todolist);
     task.parentNode.parentNode.remove();
-    console.log(Storage.getTodolist())
+    console.log(Storage.getTodolist());
   }
 
   static addProject() {
@@ -72,8 +72,8 @@ export default class Storage {
   static removeProject(project) {
     const todolist = Storage.getTodolist();
     const projName = project.parentNode.querySelector('span').textContent;
-    const projList = todolist.getProjects().filter(proj => proj.name !== `${projName}`);
-    
+    const projList = todolist.getProjects().filter((proj) => proj.name !== `${projName}`);
+
     todolist.setProjects(projList);
     Storage.setTodolist(todolist);
     project.parentNode.remove();
@@ -82,10 +82,10 @@ export default class Storage {
   static openProject(proj) {
     const todolist = Storage.getTodolist();
     UI.loadProject(proj);
-    if(todolist.getProject(proj).getTasks()){
+    if (todolist.getProject(proj).getTasks()) {
       todolist.getProject(proj)
-      .getTasks()
-      .forEach((task) => UI.loadTask(task.name, task.date));
+        .getTasks()
+        .forEach((task) => UI.loadTask(task.name, task.date));
     }
     UI.initAddTaskBtn();
     UI.initTaskBtns();
