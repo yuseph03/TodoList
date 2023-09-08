@@ -238,6 +238,7 @@
   
   .tasks-list {
     display: flex;
+    gap: 0.5em;
     flex-direction: column;
   }
 
@@ -435,9 +436,9 @@
   /* Background */
 
   .links {
-    position: static;
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
     font-size: 18px;
     font-family: sans-serif;
   }

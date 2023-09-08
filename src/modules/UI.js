@@ -106,6 +106,17 @@ export default class UI {
               Cancel
             </button>
           </div>
+        </div>
+        <div class="links">
+          <a 
+          href="https://github.com/uuuulala" 
+          target="_blank"
+          >
+          credit
+          <img class="icon" 
+          src="https://ksenia-k.com/img/icons/link.svg"
+          >
+          </a>
         </div>`;
   }
 
