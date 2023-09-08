@@ -48,11 +48,10 @@ export default class Storage {
 
     const taskList = todolist.getProject(projName)
       .getTasks()
-      .filter((task) => task.name !== `${taskName}`);
+      .filter((item) => item.name !== `${taskName}`);
     todolist.getProject(projName).setTasks(taskList);
     Storage.setTodolist(todolist);
     task.parentNode.parentNode.remove();
-    console.log(Storage.getTodolist());
   }
 
   static addProject() {
