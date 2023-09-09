@@ -14,8 +14,11 @@ export default class UI {
     const taskConfirm = document.getElementById('button-add-task-popup');
 
     addTaskBtn.addEventListener('click', () => UI.activatePopup(taskPopup));
+    addTaskBtn.addEventListener('click', () => addTaskBtn.style.display = 'none');
     taskCancel.addEventListener('click', () => UI.deactivatePopup(taskPopup));
+    taskCancel.addEventListener('click', () => addTaskBtn.style.display = 'block');
     taskConfirm.addEventListener('click', () => Storage.addTask());
+    taskConfirm.addEventListener('click', () => addTaskBtn.style.display = 'block');
   }
 
   static initAddProjectBtn() {
@@ -51,11 +54,16 @@ export default class UI {
   }
 
   static initTaskBtns() {
-    const taskBtns = Array.from(document.querySelectorAll('i.fa-circle'));
+    const deleteTaskBtns = Array.from(document.querySelectorAll('i.fa-circle'));
+    const dateBtns = Array.from(document.querySelectorAll('.due-date'));
 
-    taskBtns.forEach((element) => element.addEventListener(
+    deleteTaskBtns.forEach((element) => element.addEventListener(
       'click',
       () => Storage.removeTask(element),
+    ));
+    dateBtns.forEach((element) => element.addEventListener(
+      'click',
+      () => UI.activateCalender(element),
     ));
   }
 
@@ -66,7 +74,7 @@ export default class UI {
 
     if (projects.length > 3) {
       Object.values(projects).forEach((val) => {
-        if (val.name != 'Inbox' && val.name !== 'Week' && val.name !== 'Today') {
+        if (val.name !== 'Inbox' && val.name !== 'Week' && val.name !== 'Today') {
           UI.loadProjectBtn(val.name);
         }
       });
@@ -77,6 +85,10 @@ export default class UI {
         UI.loadTask(task.name, task.date);
       });
     }
+  }
+
+  static activateCalender(element) {
+    element.innerHTML = `<input type="date" id="due-date" name="trip-start" />`;
   }
 
   static loadProject(projectName) {
