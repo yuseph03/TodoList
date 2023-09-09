@@ -121,7 +121,10 @@
     width: 50%;
     padding: 30px 20px;
     font-size: 24px;
+    border-radius: 12px;
     text-align: center;
+
+    transition: all .3s ease-in-out 0s;
   }
 
   .fa-inbox {
@@ -139,6 +142,7 @@
     justify-content: space-between;
     background-color: var(--secondary-light);
     text-align: left;
+    transition: all .3s ease-in-out 0s;
   }
   
   .button-add-project {
@@ -146,6 +150,7 @@
     margin-left: 2px;
     background-color: var(--secondary-light);
     text-align: left;
+    transition: all .3s ease-in-out 0s;
   }
   
   .button-add-project.active {
@@ -162,6 +167,7 @@
   .button-default-project:hover,
   .button-add-project:hover {
     background-color: #ccc;
+    transform: translateY(-6px);
   }
   
   .right-project-panel {
@@ -328,6 +334,7 @@
   
   .button-add-task {
     display: block;
+    width: 50%;
     padding-left: 15px;
     margin-top: 10px;
     text-align: left;
@@ -343,7 +350,7 @@
   
   .add-task-popup {
     display: none;
-    width: 100%;
+    width: 50%;
     padding: 10px;
     text-align: center;
   }
