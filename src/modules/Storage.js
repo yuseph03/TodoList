@@ -90,6 +90,16 @@ export default class Storage {
     UI.initTaskBtns();
   }
 
+  static storeDate(input) {
+    const date = input.value;
+    const todolist = Storage.getTodolist();
+    const proj = document.getElementById('project-name').textContent;
+    const task = input.parentNode.parentNode.querySelector('.task-content').textContent;
+
+    todolist.getProject(proj).getTask(task).setDate(date);
+    Storage.setTodolist(todolist);
+  }
+
   static clear() {
     localStorage.clear();
   }

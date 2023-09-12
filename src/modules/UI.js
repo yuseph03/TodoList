@@ -56,14 +56,26 @@ export default class UI {
   static initTaskBtns() {
     const deleteTaskBtns = Array.from(document.querySelectorAll('i.fa-circle'));
     const dateBtns = Array.from(document.querySelectorAll('.due-date'));
+    const dateInput = Array.from(document.querySelectorAll('.input-due-date'));
 
     deleteTaskBtns.forEach((element) => element.addEventListener(
       'click',
       () => Storage.removeTask(element),
     ));
+
     dateBtns.forEach((element) => element.addEventListener(
       'click',
-      () => UI.activateCalender(element),
+      () => UI.activatePopup(element),
+    ));
+
+    dateBtns.forEach((element) => element.addEventListener(
+      'click',
+      () => UI.activatePopup(element.parentElement.querySelector('.input-due-date')),
+    ));
+
+    dateInput.forEach((input) => input.addEventListener(
+      'blur',
+      () => Storage.storeDate(input),
     ));
   }
 
@@ -87,9 +99,9 @@ export default class UI {
     }
   }
 
-  static activateCalender(element) {
-    element.innerHTML = `<input type="date" id="due-date" name="trip-start" />`;
-  }
+  // static activateCalender(element) {
+  //   element.innerHTML = `<input type="date" id="due-date" name="trip-start" />`;
+  // }
 
   static loadProject(projectName) {
     const projectPreview = document.querySelector('.project-preview');

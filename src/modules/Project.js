@@ -23,4 +23,8 @@ export default class Project {
   setTask(newTask) {
     this.tasks.push(newTask);
   }
+
+  getTask(theTask) {
+    return this.tasks.find(((task) => task.name === `${theTask}`));
+  }
 }
