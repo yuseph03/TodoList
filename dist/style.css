@@ -82,6 +82,7 @@
   
   .button-open-nav {
     display: none;
+    position: relative;
     width: 40px;
     padding: 0;
     background-color: var(--primary-dark);
@@ -418,6 +419,29 @@
     transform: rotate(360deg) scale(1.2);
   }
   
+  /* navbar */
+
+  .slide {
+    display: none;
+    position: absolute;
+    border-radius: 7px;
+    background-color: #fee440;
+    overflow: hidden;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 5px;
+    text-decoration: none;
+    z-index: 1;
+  }
+
+  .slide li{
+    font-size: 17px;
+    padding: 5px;
+  }
+
+  .slide.active {
+    display: block;
+  }
+    
   /* Media queries */
   
   @media (max-width: 650px) {
@@ -437,6 +461,10 @@
     .right-task-panel {
       justify-content: flex-end;
       max-width: 33%;
+    }
+
+    .project-preview {
+      height: 80vh;
     }
   }
 

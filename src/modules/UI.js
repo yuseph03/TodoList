@@ -1,3 +1,4 @@
+import toggleSlide from 'drop-down-menu';
 import Storage from './Storage';
 
 export default class UI {
@@ -5,6 +6,13 @@ export default class UI {
     UI.loadProject('Inbox');
     UI.loadProjects();
     UI.initBtns();
+  }
+
+  static initNav() {
+    const navBar = document.querySelector('.button-open-nav');
+    const slide = document.querySelector('.slide');
+
+    navBar.addEventListener('click', () => toggleSlide(slide));
   }
 
   static initAddTaskBtn() {
@@ -99,10 +107,6 @@ export default class UI {
     }
   }
 
-  // static activateCalender(element) {
-  //   element.innerHTML = `<input type="date" id="due-date" name="trip-start" />`;
-  // }
-
   static loadProject(projectName) {
     const projectPreview = document.querySelector('.project-preview');
 
@@ -182,6 +186,7 @@ export default class UI {
     UI.initAddProjectBtn();
     UI.initProjectBtns();
     UI.initTaskBtns();
+    UI.initNav();
   }
 
   static activatePopup(popup) {
